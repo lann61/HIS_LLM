@@ -82,7 +82,7 @@ if not st.session_state.logged_in:
         new_pwd = st.text_input("设置密码", type="password", key="reg_pwd")
         if st.button("提交注册"):
             try:
-                add_user(new_name, make_hashes(new_pwd))
+                add_user(new_user, make_hashes(new_pwd))
                 st.success("注册成功，请切换到登录页。")
             except:
                 st.error("该用户名已存在")
@@ -286,4 +286,5 @@ else:
                     try:
                         res = client.chat.completions.create(model="glm-4", messages=[{"role":"user","content":prompt}])
                         st.write(res.choices[0].message.content)
+
                     except Exception as e: st.error(f"分析失败：{e}")
